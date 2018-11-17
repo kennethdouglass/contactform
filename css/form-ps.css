@@ -1,0 +1,569 @@
+@charset "UTF-8";
+
+/* =======================================================================================
+	Contact Page Wrap - For demoing full page layout examples
+======================================================================================= */
+
+#form-ps-wrap {
+  display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin: 0 auto;
+  padding: 20px;
+  width: 80vw;
+  color: rgba(97,86,67,1);
+  background: rgba(240,240,235,1) url(../img/gray-bg-tile.jpg) 0 0 repeat;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.7);
+  box-shadow: 0 0 12px rgba(0,0,0,0.7);
+  resize: both;
+  overflow: auto;
+}
+
+#form-ps-wrap #left-col {
+  display: none;
+  background: rgba(255,255,255,1);
+  align-self: stretch;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#form-ps-wrap.two-col form {
+  width: 50%;
+}
+
+#form-ps-wrap.two-col #left-col {
+  display: block;
+  width: 40%;
+}
+
+
+/* =======================================================================================
+	Animations
+======================================================================================= */
+
+#form-ps .spinner {
+	-webkit-animation: spin 2s infinite linear;
+	animation: spin 2s infinite linear;
+	display: inline-block;
+}
+
+@-webkit-keyframes spin {
+	0% {-moz-transform: rotate(0deg);-o-transform: rotate(0deg);-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+	100% {-moz-transform: rotate(359deg);-o-transform: rotate(359deg);-webkit-transform: rotate(359deg);transform: rotate(359deg);}
+}
+@keyframes spin {
+	0% {-moz-transform: rotate(0deg);-o-transform: rotate(0deg);-webkit-transform: rotate(0deg);transform: rotate(0deg);}
+	100% {-moz-transform: rotate(359deg);-o-transform: rotate(359deg);-webkit-transform: rotate(359deg);transform: rotate(359deg);}
+}
+
+/* =======================================================================================
+	General Form Layout
+======================================================================================= */
+
+#form-ps {
+  margin: 0 auto;
+  max-width: 940px;
+  font-family: 'Open Sans', verdana, sans-serif;
+  color: rgba(119,119,119,1);
+  -webkit-text-size-adjust: 100%; 
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#form-ps * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+#form-ps h2 {
+  margin: 0 0 0 4px;
+  padding-bottom: 2px;
+  font-size: 1.4rem;
+  line-height: 1em;
+  font-weight: normal;
+  font-style: normal;
+}
+
+#form-ps h3 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+  font-weight: normal;
+  font-style: normal;
+  line-height: 1em;
+  border-bottom: 1px solid rgba(97,86,67,1);
+}
+
+@media (min-width: 480px) {
+  #form-ps h2 {
+    font-size: 1.8rem;
+  }
+  #form-ps h3 {
+    font-size: 1.2rem;
+  }
+}
+
+#form-ps p {
+  margin: 0 0 12px;
+  font-size: 0.8rem;
+  line-height: 1.2em;
+}
+
+#form-ps a:focus, #form-ps a:active {
+  outline: none; 
+}
+
+@media (min-width: 480px) {
+  #form-ps p {
+    font-size: 0.9rem;
+  }
+}
+
+#form-ps :focus {
+  outline: none;
+}
+
+#form-ps li {
+  position: relative;
+  margin: 0 0 10px;
+  padding: 0;
+  width: 100%;
+  list-style: none;
+}
+
+#form-ps ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#form-ps .no-margin {
+  margin: 0;
+}
+
+#form-ps fieldset {
+  padding: 20px 0;
+  line-height: 1em;
+  border: 0;
+  /* border-top: 1px dashed rgba(164,67,42,1); */
+}
+
+#form-ps label {
+  display: block;
+  margin: 0 0 2px;
+}
+
+#form-ps fieldset:first-child {
+  border-top: 0;
+}
+
+#form-ps fieldset:last-child {
+  padding-bottom: 0;
+}
+
+#form-ps .feedback {
+  position: relative;
+  display: none;
+  margin: 0 0 24px;
+  padding: 8px 12px;
+  width: 100%;
+  min-height: 44px;
+  vertical-align: middle;
+  color: rgba(255,255,255,1);
+  background: rgba(229,160,186,1); 
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#form-ps .feedback div {
+  padding-right: 32px;
+}
+
+#form-ps .feedback div p {
+  margin: 0 0 7px;
+  line-height: 1.1em;
+}
+
+#form-ps .feedback div p:last-child {
+  margin: 0;
+}
+
+#form-ps .feedback i {
+  position: absolute;
+  top: 6px;
+  right: 4px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+#form-ps .fa-asterisk {
+  position: relative;
+  top: -1em;
+  font-size: 0.5em;
+  color: rgba(164,67,42,1);
+}
+
+#form-ps ::-webkit-input-placeholder { font-style: italic; color: rgba(119,119,119,1); }
+#form-ps ::-moz-placeholder { font-style: italic; color: rgba(119,119,119,1); }
+#form-ps :-ms-input-placeholder { font-style: italic; color: rgba(119,119,119,1); }
+#form-ps :-moz-placeholder { font-style: italic; color: rgba(119,119,119,1); }
+
+#form-ps .error {
+  display: block;
+  margin: 2px 0;
+  padding: 10px;
+  font-size: 0.8rem;
+  color: rgba(255,255,255,1);
+  background: rgba(229,160,186,1); 
+}
+
+/* =======================================================================================
+	Button (LI) Designs
+======================================================================================= */
+
+#form-ps .f-button {
+  position: relative;
+  display: inline-block;
+  padding: 10px 12px;
+  width: 100%;
+  font-size: 0.8rem;
+  word-spacing: 1px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: rgba(240,154,131,1);
+  color: rgba(255,255,255,1);
+  cursor: pointer;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 275ms;
+  transition-duration: 275ms;
+}
+
+#form-ps .f-button:hover, #form-ps .f-button:focus {
+  background: rgba(240,190,131,1);
+}
+
+#form-ps .f-button.selected {
+  background: rgba(94,171,127,1);
+}
+
+/* Submit button */
+#form-ps .f-button2 {
+  display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  width: 100%;
+  height: 70px;
+  font-size: 0.8rem;
+  word-spacing: 1px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  text-align: center;
+  background: rgba(94,171,127,1); 
+  border: 1px dashed transparent;
+  color: rgba(255,255,255,1);
+  cursor: pointer;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-transition-property: all;
+  transition-property: all;
+  -webkit-transition-duration: 275ms;
+  transition-duration: 275ms;
+  -webkit-appearance: button;
+}
+
+#form-ps .f-button2:hover, #form-ps .f-button2:focus {
+  background: rgba(94,171,127,0.8);
+}
+
+#form-ps .f-button2 i {
+  display: none;
+  font-size: 2em;
+}
+
+#form-ps .f-button2[disabled] {
+  cursor: default;
+  background: transparent;
+  border-color: rgba(94,171,127,1);
+}
+
+#form-ps .f-button2[disabled] span {
+  display: none;
+}
+
+#form-ps .f-button2[disabled] i {
+  display: inline-block;
+  color: rgba(94,171,127,1);
+}
+
+@media (min-width: 480px) {
+  #form-ps .f-button, #form-ps .f-button2 {
+    font-size: 1rem;
+  }
+}
+
+
+
+/* =======================================================================================
+	Custom Radio Buttons & Checkboxes
+======================================================================================= */
+
+#form-ps .f-radio,
+#form-ps .f-cbx {
+  display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#form-ps input[type="radio"],
+#form-ps input[type="checkbox"] {
+  position: absolute;
+	left: 0;
+	opacity: 0;
+	margin: 0;
+	width: auto;
+	height: auto;
+	cursor: pointer;
+}
+
+#form-ps .f-radio .fa-dot-circle {
+  display: none;
+}
+
+#form-ps .f-radio.selected .fa-dot-circle {
+  display: inline-block;
+}
+
+#form-ps .f-radio.selected .fa-circle {
+  display: none;
+}
+
+#form-ps .f-cbx .fa-check-square {
+  display: none;
+}
+
+#form-ps .f-cbx.selected .fa-check-square {
+  display: inline-block;
+}
+
+#form-ps .f-cbx.selected .fa-square {
+  display: none;
+}
+
+#form-ps .radio-list i:before,
+#form-ps .check-list i:before { font-size: 1.2rem; line-height: 1em; }
+
+#form-ps .radio-list label,
+#form-ps .check-list label {
+	cursor: pointer;
+}
+
+#form-ps .radio-list label span,
+#form-ps .check-list label span {
+	margin-left: 0.2em;
+}
+
+#form-ps .radio-list a,
+#form-ps .check-list a {
+  text-decoration: underline;
+  color: inherit;
+}
+
+
+
+/* =======================================================================================
+	Input Fields
+======================================================================================= */
+
+#form-ps input, #form-ps textarea {
+  font-size: 18px;
+  word-spacing: 1px;
+  line-height: 24px;
+  font-family: euro,'Trebuchet MS','Lucida Sans Unicode','Lucida Grande',sans-serif;
+  font-weight: 300;
+  text-transform: none;
+  letter-spacing: 0;
+  color: rgba(119,119,119,1);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+}
+
+#form-ps input[type="text"], #form-ps input[type="email"], #form-ps textarea {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: rgb(185,208,220,1); 
+  border: 1px solid transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  outline: none;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  -webkit-appearance: none;
+}
+
+#form-ps input[type="text"]:focus, #form-ps input[type="email"]:focus {
+  border-color: rgba(86,130,152,1);
+}
+
+/* =======================================================================================
+	Textarea
+======================================================================================= */
+
+#form-ps textarea {
+  margin: 0;
+  width: 100%;
+  min-height: 160px;
+  resize: vertical;
+	overflow: auto;
+  border: 1px solid transparent;
+}
+
+#form-ps textarea:focus {
+  border-color: rgba(86,130,152,1);
+}
+
+#form-ps .ui-msg {
+  margin: 12px 0 0;
+  padding: 10px;
+  width: 100%;
+  font-size: 0.8rem;
+  text-align: center;
+  background: rgba(249,249,249,1);
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+@media (min-width: 480px) {
+  #form-ps .ui-msg {
+    font-size: 0.9rem;
+  }
+}
+
+#form-ps #msg-count {
+  color: rgba(240,154,131,1);
+}
+
+#form-ps #msg-counter.overMax {
+  background: rgba(255,234,178,1); 
+}
+
+#form-ps #msg-counter.overMax #desc-count {
+  color: rgba(163,69,42,1);
+}
+
+/* =======================================================================================
+	Custom Select Drop Downs
+======================================================================================= */
+
+#form-ps select {
+  position: relative;
+  width: 10%;
+  height: 0;
+  overflow: hidden;
+}
+
+#form-ps .s-hidden {
+  visibility: hidden;
+  padding-right: 10px;
+}
+
+#form-ps .styledSelect {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  rgba(249,249,249,1)F09A83;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#form-ps .styledSelect.selected {
+  background: rgba(94,171,127,1);
+}
+
+#form-ps .styledSelect:hover, #form-ps .styledSelect:focus {
+  background: rgba(240,190,131,1);
+}
+
+#form-ps .styledSelect i {
+  font-size: 1.8rem;
+}
+
+#form-ps .styledSelect .fa-caret-up {
+  display: none;
+}
+
+#form-ps .styledSelect.active .fa-caret-down {
+  display: none;
+}
+
+#form-ps .styledSelect.active .fa-caret-up {
+  display: inline-block;
+}
+
+#form-ps .options {
+  display: none;
+  position: absolute;
+  top: 99%;
+  right: 0;
+  left: 0;
+  z-index: 999;
+  padding: 18px 10px 12px;
+  width: 100%;
+  min-height: 80px;
+  z-index: 99;
+  text-transform: none;
+  letter-spacing: 1px;
+  text-align: left;
+  background: rgba(240,190,131,0.9);
+  -webkit-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+}
+
+#form-ps .options li {
+  margin: 0;
+  padding: 10px;
+  width: 100%;
+  border: 1px solid transparent;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+}
+
+#form-ps .options li:hover {
+  border: 1px solid #F09A83;
+}
+
+/* cheap anti-spam: bots, at one time, checked every checkbox on a form 
+   captchas are one cause of abandonment, but if necessary, recommend Google's Recaptcha:
+   https://www.google.com/recaptcha/intro/v3.html
+*/
+#form-ps #iamcompLabel {
+  visibility: hidden; 
+}
+
+
+
+

@@ -1,0 +1,192 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Plain and Simple Contact Form</title>
+    <meta name="viewport" content="target-densitydpi=device-dpi,width=device-width,initial-scale=1,minimum-scale=1.0, maximum-scale=1.0"/>
+		<link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Slabo+27px" rel="stylesheet">
+    <link href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" rel="stylesheet" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+ 
+    <link rel="stylesheet" href="css/demo.css" />
+    <link rel="stylesheet" href="css/form-ps.css" />
+    
+    <!-- DEV CSS -->
+    <style type="text/css">
+
+    </style>
+    
+    
+    <!-- HTML TEMPLATES -->
+    <script id="radiobutton-template" type="text/template">
+      <li>
+        <label tabindex="0" class="f-button f-radio" for="{{radiobuttonfor}}">
+          <input tabindex="-1" type="radio" name="radiobuttonlist" value="{{radiobuttonvalue}}" id="{{radiobuttonid}}" />
+          <i class="far fa-circle"></i><i class="far fa-dot-circle"></i>
+          <span class="label">{{radiobuttontext}}</span>
+        </label>
+      </li> 
+    </script>
+
+    <script id="checkbox-template" type="text/template">
+      <li>
+        <label tabindex="0" class="f-button f-cbx" for="{{checkboxfor}}">
+          <input tabindex="-1" type="checkbox" name="{{checkboxname}}" value="{{checkboxvalue}}" id="{{checkboxid}}" />
+          <i class="far fa-square"></i><i class="far fa-check-square"></i>
+          <span class="label">{{checkboxtext}}</span>
+        </span>
+        </label>
+      </li> 
+    </script>
+    
+    <!-- EXTERNAL DATA FILES -->
+    <script type="text/javascript" src="js/sitedata.js"></script>
+    <script type="text/javascript" src="js/message-text.js"></script>
+
+  </head>
+  <body>
+
+    <header>
+      <h1> Plain &amp; Simple Contact Form </h1>
+    </header>
+
+
+    <div id="form-ps-wrap" class="two-col">
+
+      <div id="left-col">
+        <h3>A complete, simple contact form</h3>
+        <p>
+          One of my favorite projects is designing, building and coding forms. This form is configurable, includes validation 
+          for required fields and is inherently responsive.
+        </p>
+        <p>
+          The configuration files are <a href="js/sitedata.js" class="new-win">sitedata.js</a>, which contains the bulk of the 
+          configurable features of the form, and <a href="js/message-text.js" class="new-win">message-text.js</a>, which contains 
+          all of the feedback messaging text.
+        </p>
+        <p>
+          The 'Subject' drop down is a 'converted' form select element and can be configured to include as many elements as 
+          desired. The code in pscontact.js is pretty well commented on how this is done.
+        </p>
+        <p>
+          The radio button list and the list of checkboxes are also custom styled elements and are also configurable for as many 
+          items as needed.
+        </p>
+        <p>
+          The radio button list, checkbox list, and URL fields can be configured to be 'turned off' via the configuration file.
+        </p>
+        <p>
+          Any necessary reset CSS has been included in the <a href="css/form-ps.css" class="new-win">form-ps.css</a> file. All 
+          style declarations are 'namespaced' to avoid conflicts with other CSS files. (there are no guarantees, of course)
+        </p>
+        <p>
+          I have cleaned up the code fairly well, though you may find various 'dev cheats' here and there.
+        </p>
+        <p>
+          Disclaimer: This has not been fully QA'd for all devices.
+        </p>
+        <p>
+          TODO: [1] Create a SASS file to make the CSS more easily configurable. [2] Validate the HTML and CSS.
+        </p>
+      </div>
+
+      <!-- Begin the form module -->
+      <form id="form-ps" name="form-ps" method="post" action="">
+      <h2 id="form-header">{{FORMHEADER}}</h2>
+
+      <div id="feedback-success" class="feedback"><div></div><i class="far fa-times-circle"></i></div> 
+      <div id="feedback-fail" class="feedback"><div></div><i class="far fa-times-circle"></i></div> 
+    
+        <fieldset id="form-contact-info">
+          <h3><i class="fas fa-asterisk"></i><span>{{CONTACTINFOHEADER}}</span></h3>
+          <ul>
+            <li>
+              <label for="name">{{NAMELABEL}}</label>
+              <input tabindex="0" type="text" name="name" placeholder="{{NAMEPLACEHOLDER}}" id="fullName" />
+              <span class="error" id="err-fullName" style="display:none;"></span>
+            </li>
+            <li>
+              <label for="email">{{EMAILLABEL}}</label>
+              <input tabindex="0" type="email" name="email" placeholder="{{EMAILPLACEHOLDER}}" id="emailAddr" />
+              <span class="error" id="err-emailAddr" style="display:none;"></span>
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset id="form-subject-info"> 
+          <h3><i class="fas fa-asterisk"></i><span>{{SELECTHEADER}}</span></h3> 
+          <ul> 
+            <li>
+              <select tabindex="0" name="select-subject" id="select-subject">
+                <option value="null" selected="selected" disabled="disabled">{{DEFAULTOPTIONTEXT}}</option>
+              </select>
+            </li> 
+          </ul> 
+        </fieldset>
+
+        <fieldset id="form-website-info" style="display:none;">
+          <h3>{{WEBSITEINFOHEADER}}</h3>
+          <ul>
+            <li>
+              <label for="url">{{WEBSITELABEL}}</label>
+              <input tabindex="0" type="text" name="url" placeholder="{{WEBSITEPLACEHOLDER}}" id="url" />
+            </li>
+          </ul>
+        </fieldset>
+
+        <fieldset id="form-radiobutton-list" style="display: none;"> 
+          <h3>{{RADIOBUTTONSHEADER}}</h3>
+          <p>{{RADIOBUTTONSDESC}}</p> 
+          <ul class="radio-list"> 
+            
+          </ul>     
+        </fieldset>
+
+        <fieldset id="form-checkbox-list" style="display: none;"> 
+          <h3>{{CHECKBOXSHEADER}}</h3>
+          <p>{{CHECKBOXESDESC}}</p> 
+          <ul class="check-list" id="check-list"> 
+            
+          </ul> 
+        </fieldset>
+      
+        <fieldset id="form-message-info"> 
+          <h3><i class="fas fa-asterisk"></i><span>{{MESSAGEHEADER}}</span></h3>
+          <p></p> 
+          <label for="message">{{MESSAGELABEL}}</label>
+          <textarea tabindex="0" name="message" maxlength="{{MESSAGEMAXLENGTH}}" id="form-ps-msg" placeholder="{{MESSAGEPLACEHOLDER}}"></textarea> 
+          <span class="error" id="err-form-ps-msg" style="display:none;"></span>
+          <div class="ui-msg" id="msg-limit">{{MESSAGEINSTRUCTION}}</div> 
+          <div class="ui-msg" id="msg-counter">{{COUNTERFEEDBACK}}</div> 
+        </fieldset>
+      
+        <fieldset id="form-submit-info"> 
+          <ul> 
+            <li class="no-margin"> 
+              <label for="iamcomp" class="required" id="iamcompLabel">Tick if you are a computer
+              <input class="required" type="checkbox" value="comp" name="iamcomp" id="iamcomp" /></label> 
+              <button tabindex="0" type="sumbit" class="f-button2" id="submit-psform">
+                <span>{{BUTTONTEXT}}</span>
+                <i class="fas fa-spinner spinner"></i>
+              </button>
+            </li> 
+          </ul> 
+        </fieldset>
+
+      </form>
+  
+    </div>
+
+
+    <footer>
+    <a href="http://kennethmdouglass.com" class="new-win">kennethmdouglass.com</a>
+    </footer>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script> 
+	<!--  offline dev: <script src="js/lib/jquery-1.11.3.min.js"></script> -->
+  <script type="text/javascript" src="js/_main.js"></script>
+  <script type="text/javascript" src="js/pscontact.js"></script>
+
+    </body> 
+</html>
