@@ -1,32 +1,138 @@
 @charset "UTF-8";
 
+// =======================================================================================
+	 // Variables
+// ======================================================================================= 
+
+$form-wrap-bg-color:  rgba(240,240,235,1);
+$base-font-color:     rgba(119,119,119,1);
+$rev-contrast-color:  rgba(249,249,249,1); // generally a branded 'white' color
+$shadow-color:        rgba(0,0,0,0.7);
+
+$form-font:           'Open Sans', verdana, sans-serif;
+$form-font-color:     $base-font-color;
+$form-m-h2-size:      1.4rem; // mobile first size
+$form-h2-size:        1.8rem; 
+$form-m-h3-size:      1.1rem; // mobile first size
+$form-h3-size:        1.2rem;
+$form-m-para-size:    0.8rem; // mobile first size
+$form-para-size:      0.9rem; 
+
+$form-feedback-color: $rev-contrast-color;
+$feedback-bg-color:   rgba(229,160,186,1);
+
+$form-asterisk-color: rgba(164,67,42,1);
+$form-error-color:    $rev-contrast-color;
+
+$form-button-color:           $rev-contrast-color;
+$styled-el-bg-color:          rgba(240,154,131,1);
+$styled-el-bg-color-hover:    rgba(240,190,131,1);
+$styled-el-bg-color-selected: rgba(94,171,127,1);
+
+$submit-button-color:      $rev-contrast-color;
+$submit-bg-color:          rgba(94,171,127,1);
+$submit-bg-color-hover:    rgba(94,171,127,0.8);
+$submit-bg-color-disabled: rgba(94,171,127,1);
+
+$input-font-size:     18px;
+$focus-border-color:  rgba(86,130,152,1);
+
+// A simple two-color vertical gradient to an element
+// @param  $top          The color at the top of the gradient
+// @param  $bottom       The color at the bottom of the gradient
+// @param  $top-stop     The percentage to apply the top color stop
+// @param  $bottom-stop  The percentage to apply the bottom color stop
+@mixin v-grad( $top, $bottom, $top-stop: 0%, $bottom-stop: 100% ) {
+  background: $top;
+  background: linear-gradient( to bottom, $top $top-stop, $bottom $bottom-stop );
+}
+
+
+//Applies the desired background to an element
+// @param  $color        The background color
+// @param  $image        The path and filename of the bg image
+// @param  $position     The bg image position ( 'x, y' )
+// @param  $repeat       The bg repeat ( 'repeat', 'no-repeat' )
+// @param  $size       	 The bg size 
+@mixin background( $color, $image: none, $position: 0 0, $repeat: repeat, $size: auto ) {
+  @if $image != none {    
+    background: $color url($image) $position $repeat;
+    
+    @if $size != '' {
+    	background-size: $size;
+    }
+    
+  } @else { 
+  	background: $color;  
+  }  
+}
+
+$default-spread: 12px;
+$shadow-color: rgba(0,0,0,0.3);
+
+// Applies a box shadow to the element
+// @param  $set        Boolean: set a box shadow?
+// @param  $h-offset   Horizontal offset
+// @param  $v-offset   Vertical offset
+// @param  $blur       Blur radius
+// @param  $spread     Shadow distance / spread 
+// @param  $color      Shadow color 
+@mixin box-shadow( $set: false, $h-offset: 0, $v-offset: 0, $blur: 0, $spread: $default-spread ) {
+  @if $set == true {  
+  	-webkit-box-shadow: $h-offset $v-offset $blur $spread $shadow-color;
+  	box-shadow: $h-offset $v-offset $blur $spread $shadow-color;  
+  }
+}
+
+
+// Form Input field placeholder styles
+// @param  $style      e.g. 'italic'
+// @param  $color      Text color 
+@mixin placeholders( $style, $color ) {
+  #form-ps ::-webkit-input-placeholder { font-style: $style; color: $color; }
+	#form-ps ::-moz-placeholder { font-style: $style; color: $color; }
+	#form-ps :-ms-input-placeholder { font-style: $style; color: $color; }
+	#form-ps :-moz-placeholder { font-style: $style; color: $color; }
+}
+
+
+// Handles all the flex vendor prefixes etc
+// @param  $direction  row || column
+// @param  $justify    Horizontal alignment
+// @param  $align      Vertical alignment
+@mixin display-flex( $direction, $justify, $align ) {
+  display: -webkit-box;
+	display: -webkit-flex;
+	display: flex;
+	-webkit-flex-direction: $direction;
+  flex-direction: $direction; 
+  -webkit-justify-content: $justify;
+  justify-content: $justify;
+  -webkit-align-items: $align;
+  align-items: $align;
+}
+
 /* =======================================================================================
 	Contact Page Wrap - For demoing full page layout examples
 ======================================================================================= */
 
 #form-ps-wrap {
-  display: -webkit-box;
-	display: -webkit-flex;
-	display: flex;
-	flex-direction: row;
-  justify-content: space-between;
-  align-items: flex-start;
+  @include display-flex( row, space-between, flex-start );
   margin: 0 auto;
   padding: 20px;
   width: 80vw;
-  color: rgba(97,86,67,1);
-  background: rgba(240,240,235,1) url(../img/gray-bg-tile.jpg) 0 0 repeat;
+  color: $base-font-color;
+  @include background( $form-wrap-bg-color, '../img/gray-bg-tile.jpg', 0 0, repeat );
   -webkit-border-radius: 4px;
   border-radius: 4px;
-  -webkit-box-shadow: 0 0 12px rgba(0,0,0,0.7);
-  box-shadow: 0 0 12px rgba(0,0,0,0.7);
+  @include box-shadow( true,0,0,12px ); 
   resize: both;
   overflow: auto;
 }
 
 #form-ps-wrap #left-col {
   display: none;
-  background: rgba(255,255,255,1);
+  @include background($rev-contrast-color);
   align-self: stretch;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -68,8 +174,8 @@
 #form-ps {
   margin: 0 auto;
   max-width: 940px;
-  font-family: 'Open Sans', verdana, sans-serif;
-  color: rgba(119,119,119,1);
+  font-family: $form-font;
+  color: $form-font-color;
   -webkit-text-size-adjust: 100%; 
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -83,7 +189,7 @@
 #form-ps h2 {
   margin: 0 0 0 4px;
   padding-bottom: 2px;
-  font-size: 1.4rem;
+  font-size: $form-m-h2-size;
   line-height: 1em;
   font-weight: normal;
   font-style: normal;
@@ -91,25 +197,25 @@
 
 #form-ps h3 {
   margin: 0 0 10px;
-  font-size: 1.1rem;
+  font-size: $form-m-h3-size;
   font-weight: normal;
   font-style: normal;
   line-height: 1em;
-  border-bottom: 1px solid rgba(97,86,67,1);
+  border-bottom: 1px solid $base-font-color;
 }
 
 @media (min-width: 480px) {
   #form-ps h2 {
-    font-size: 1.8rem;
+    font-size: $form-h2-size;
   }
   #form-ps h3 {
-    font-size: 1.2rem;
+    font-size: $form-h3-size;
   }
 }
 
 #form-ps p {
   margin: 0 0 12px;
-  font-size: 0.8rem;
+  font-size: $form-m-para-size;
   line-height: 1.2em;
 }
 
@@ -119,7 +225,7 @@
 
 @media (min-width: 480px) {
   #form-ps p {
-    font-size: 0.9rem;
+    font-size: $form-para-size;
   }
 }
 
@@ -149,7 +255,6 @@
   padding: 20px 0;
   line-height: 1em;
   border: 0;
-  /* border-top: 1px dashed rgba(164,67,42,1); */
 }
 
 #form-ps label {
@@ -173,8 +278,8 @@
   width: 100%;
   min-height: 44px;
   vertical-align: middle;
-  color: rgba(255,255,255,1);
-  background: rgba(229,160,186,1); 
+  color: $form-feedback-color;
+  @include background($feedback-bg-color);
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
@@ -204,21 +309,18 @@
   position: relative;
   top: -1em;
   font-size: 0.5em;
-  color: rgba(164,67,42,1);
+  color: $form-asterisk-color;
 }
 
-#form-ps ::-webkit-input-placeholder { font-style: italic; color: rgba(119,119,119,1); }
-#form-ps ::-moz-placeholder { font-style: italic; color: rgba(119,119,119,1); }
-#form-ps :-ms-input-placeholder { font-style: italic; color: rgba(119,119,119,1); }
-#form-ps :-moz-placeholder { font-style: italic; color: rgba(119,119,119,1); }
+@include placeholders( italic, $base-font-color );
 
 #form-ps .error {
   display: block;
   margin: 2px 0;
   padding: 10px;
   font-size: 0.8rem;
-  color: rgba(255,255,255,1);
-  background: rgba(229,160,186,1); 
+  color: $form-error-color;
+  @include background($feedback-bg-color);
 }
 
 /* =======================================================================================
@@ -234,8 +336,8 @@
   word-spacing: 1px;
   letter-spacing: 3px;
   text-transform: uppercase;
-  background: rgba(240,154,131,1);
-  color: rgba(255,255,255,1);
+  @include background($styled-el-bg-color);
+  color: $form-button-color;
   cursor: pointer;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -246,11 +348,11 @@
 }
 
 #form-ps .f-button:hover, #form-ps .f-button:focus {
-  background: rgba(240,190,131,1);
+  @include background($styled-el-bg-color-hover);
 }
 
 #form-ps .f-button.selected {
-  background: rgba(94,171,127,1);
+  @include background($styled-el-bg-color-selected);
 }
 
 /* Submit button */
@@ -261,6 +363,7 @@
 	flex-direction: row;
   justify-content: center;
   align-items: center;
+  @include display-flex( row, center, center );
   padding: 0;
   width: 100%;
   height: 70px;
@@ -270,9 +373,9 @@
   text-transform: uppercase;
   vertical-align: middle;
   text-align: center;
-  background: rgba(94,171,127,1); 
+  @include background($submit-bg-color);
   border: 1px dashed transparent;
-  color: rgba(255,255,255,1);
+  color: $submit-button-color;
   cursor: pointer;
   -webkit-border-radius: 4px;
   border-radius: 4px;
@@ -284,7 +387,7 @@
 }
 
 #form-ps .f-button2:hover, #form-ps .f-button2:focus {
-  background: rgba(94,171,127,0.8);
+  @include background($submit-bg-color-hover);
 }
 
 #form-ps .f-button2 i {
@@ -295,7 +398,7 @@
 #form-ps .f-button2[disabled] {
   cursor: default;
   background: transparent;
-  border-color: rgba(94,171,127,1);
+  border-color: $submit-bg-color-disabled;
 }
 
 #form-ps .f-button2[disabled] span {
@@ -304,7 +407,7 @@
 
 #form-ps .f-button2[disabled] i {
   display: inline-block;
-  color: rgba(94,171,127,1);
+  color: $submit-bg-color-disabled;
 }
 
 @media (min-width: 480px) {
@@ -321,12 +424,7 @@
 
 #form-ps .f-radio,
 #form-ps .f-cbx {
-  display: -webkit-box;
-	display: -webkit-flex;
-	display: flex;
-	flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+  @include display-flex( row, flex-start, center );
 }
 
 #form-ps input[type="radio"],
@@ -390,14 +488,14 @@
 ======================================================================================= */
 
 #form-ps input, #form-ps textarea {
-  font-size: 18px;
+  font-size: $input-font-size;
   word-spacing: 1px;
   line-height: 24px;
-  font-family: 'Open Sans', verdana, sans-serif;
+  font-family: $form-font;
   font-weight: 300;
   text-transform: none;
   letter-spacing: 0;
-  color: rgba(119,119,119,1);
+  color: $base-font-color;
   -webkit-tap-highlight-color: transparent;
   -webkit-font-smoothing: antialiased;
 }
@@ -417,7 +515,7 @@
 }
 
 #form-ps input[type="text"]:focus, #form-ps input[type="email"]:focus {
-  border-color: rgba(86,130,152,1);
+  border-color: $focus-border-color;
 }
 
 /* =======================================================================================
@@ -434,7 +532,7 @@
 }
 
 #form-ps textarea:focus {
-  border-color: rgba(86,130,152,1);
+  border-color: $focus-border-color;
 }
 
 #form-ps .ui-msg {
@@ -443,7 +541,7 @@
   width: 100%;
   font-size: 0.8rem;
   text-align: center;
-  background: rgba(249,249,249,1);
+  @include background($rev-contrast-color);
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
@@ -455,7 +553,7 @@
 }
 
 #form-ps #msg-count {
-  color: rgba(240,154,131,1);
+  color: $styled-el-bg-color;
 }
 
 #form-ps #msg-counter.overMax {
@@ -488,24 +586,19 @@
   right: 0;
   bottom: 0;
   left: 0;
-  display: -webkit-box;
-	display: -webkit-flex;
-	display: flex;
-	flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  @include display-flex( row, space-between, center );
   padding: 10px 12px;
-  color: rgba(249,249,249,1);
+  color: $rev-contrast-color;
   -webkit-border-radius: 4px;
   border-radius: 4px;
 }
 
 #form-ps .styledSelect.selected {
-  background: rgba(94,171,127,1);
+  @include background($styled-el-bg-color-selected);
 }
 
 #form-ps .styledSelect:hover, #form-ps .styledSelect:focus {
-  background: rgba(240,190,131,1);
+  @include background($styled-el-bg-color-hover);
 }
 
 #form-ps .styledSelect i {
@@ -538,7 +631,7 @@
   text-transform: none;
   letter-spacing: 1px;
   text-align: left;
-  background: rgba(240,190,131,0.9);
+  @include background(rgba(240,190,131,0.9));
   -webkit-border-radius: 0 0 5px 5px;
   border-radius: 0 0 5px 5px;
 }
@@ -553,7 +646,7 @@
 }
 
 #form-ps .options li:hover {
-  border: 1px solid rgba(249,249,249,1);
+  border: 1px solid $rev-contrast-color;
 }
 
 /* cheap anti-spam: bots, at one time, checked every checkbox on a form 
